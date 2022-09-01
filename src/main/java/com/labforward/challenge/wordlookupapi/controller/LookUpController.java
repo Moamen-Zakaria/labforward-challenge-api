@@ -1,9 +1,8 @@
 package com.labforward.challenge.wordlookupapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.labforward.challenge.wordlookupapi.service.LookupService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import com.labforward.challenge.wordlookupapi.model.Report;
 
@@ -11,14 +10,21 @@ import com.labforward.challenge.wordlookupapi.model.Report;
 @RequestMapping("/lookup")
 public class LookUpController {
 
-	@GetMapping(path = "/report")
-	public Report getReport() {
-		return null;
-	}
 
-	@PostMapping(path = "/report")
-	public Report postReport() {
-		return null;
-	}
+    public LookUpController(LookupService lookupService) {
+        this.lookupService = lookupService;
+    }
+
+    private final LookupService lookupService;
+
+    @GetMapping(path = "/report")
+    public Report getReport(@RequestParam String text, @RequestParam String queryWord) {
+        return lookupService.reportText(text, queryWord);
+    }
+
+    @PostMapping(path = "/report")
+    public Report postReport(@RequestParam String text, @RequestParam String queryWord) {
+        return lookupService.reportText(text, queryWord);
+    }
 
 }

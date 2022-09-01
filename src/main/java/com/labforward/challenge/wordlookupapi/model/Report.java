@@ -1,7 +1,7 @@
 package com.labforward.challenge.wordlookupapi.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.Data;
 
@@ -9,10 +9,10 @@ import lombok.Data;
 public class Report {
 
     private Long occurrences = 0L;
-    private final List<String> similarities = new ArrayList<>();
+    private final Set<String> similarities = new HashSet<>();
 
     public void addSimilarity(String similarString) {
-        if (similarString != null && !similarString.equals("")) {
+        if (similarString == null || similarString.equals("")) {
             return;
         }
         similarities.add(similarString);

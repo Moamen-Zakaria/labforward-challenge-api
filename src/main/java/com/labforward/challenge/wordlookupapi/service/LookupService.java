@@ -45,10 +45,13 @@ public class LookupService {
                 if (streamTokenizer.ttype == StreamTokenizer.TT_NUMBER) {
                     token = Double.toString(streamTokenizer.nval);
                     indexTokenInReport.accept(token);
-                } else if (streamTokenizer.ttype == StreamTokenizer.TT_WORD) {
+                } else if (streamTokenizer.ttype == StreamTokenizer.TT_WORD
+                        || streamTokenizer.ttype == '\''
+                        || streamTokenizer.ttype == '"') {
                     token = streamTokenizer.sval;
                     indexTokenInReport.accept(token);
                 }
+                streamTokenizer.nextToken();
             }
 
         } catch (IOException e) {
