@@ -8,6 +8,7 @@ import com.labforward.challenge.wordlookupapi.model.Report;
 
 @RestController
 @RequestMapping("/lookup")
+@CrossOrigin(origins = "*")
 public class LookUpController {
 
 
@@ -18,13 +19,13 @@ public class LookUpController {
     private final LookupService lookupService;
 
     @GetMapping(path = "/report")
-    public Report getReport(@RequestParam String text, @RequestParam String queryWord) {
-        return lookupService.reportText(text, queryWord);
+    public Report getReport(@RequestParam String text, @RequestParam String keyword) {
+        return lookupService.reportText(text, keyword);
     }
 
     @PostMapping(path = "/report")
-    public Report postReport(@RequestParam String text, @RequestParam String queryWord) {
-        return lookupService.reportText(text, queryWord);
+    public Report postReport(@RequestParam String text, @RequestParam String keyword) {
+        return lookupService.reportText(text, keyword);
     }
 
 }
